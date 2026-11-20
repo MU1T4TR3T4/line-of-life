@@ -11,6 +11,7 @@ const SOURCE: Record<Moment["dateSource"], string> = {
   "nome-do-arquivo": "Data tirada do nome do arquivo",
   gestacao: "Data calculada pela semana de gestação",
   manual: "Data ajustada à mão",
+  arquivo: "Data do arquivo no Drive (confira se está certa)",
 };
 
 interface Props {
