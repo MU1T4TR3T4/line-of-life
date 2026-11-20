@@ -4,12 +4,16 @@ Site da família com a história do Dante, do primeiro ultrassom até hoje.
 
 - **Computador:** Rio da vida, uma linha horizontal com polaroids que balançam, inclinam em 3D e abrem em tela cheia.
 - **Celular:** Álbum de capítulos por idade, com modo histórias.
-- **Fotos:** ficam no Google Drive da família (etapa 2). Por enquanto o app usa momentos de exemplo em `src/lib/sample.ts`.
+- **Fotos:** ficam numa pasta do Google Drive da família. O site lê a pasta a cada 15 minutos. Sem configuração, usa os momentos de exemplo de `src/lib/sample.ts`.
+- **Acesso:** protegido pela senha da família (`SITE_PASSWORD`).
+
+Para publicar e ligar o Drive, siga [docs/CONFIGURAR.md](docs/CONFIGURAR.md).
 
 ## Rodar
 
 ```bash
 npm install
+cp .env.example .env.local   # opcional: preencha para usar o Drive
 npm run dev
 ```
 
@@ -33,6 +37,6 @@ Datas e nome ficam em `src/config.ts` (os valores atuais são de exemplo).
 ## Etapas
 
 1. Visual e interações com dados de exemplo (este código)
-2. Sincronizar com a pasta do Google Drive
+2. Ler fotos e vídeos da pasta do Google Drive, senha da família
 3. Login e família
 4. Modo filme com música, comparar fotos, filtros por pessoa

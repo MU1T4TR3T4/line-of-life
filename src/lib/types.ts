@@ -13,7 +13,7 @@ export interface Moment {
   /** Arquivo original (foto grande ou vídeo) */
   url?: string;
   /** Onde a data foi encontrada */
-  dateSource: "exif" | "nome-do-arquivo" | "gestacao" | "manual";
+  dateSource: "exif" | "nome-do-arquivo" | "gestacao" | "manual" | "arquivo";
   place?: string;
   people?: string[];
   /** Matiz usado na arte de exemplo enquanto não há foto real */

@@ -24,12 +24,33 @@ function getMode(): Mode {
   return window.matchMedia(WIDE_QUERY).matches ? "rio" : "album";
 }
 
-export function Experience({ moments }: { moments: Moment[] }) {
+interface Props {
+  moments: Moment[];
+  source?: "drive" | "exemplo";
+  error?: string;
+}
+
+export function Experience({ moments, source = "exemplo", error }: Props) {
   const mode = useSyncExternalStore<Mode | null>(subscribe, getMode, () => null);
   const [openId, setOpenId] = useState<string | null>(null);
   const sorted = useMemo(() => [...moments].sort((a, b) => a.date.localeCompare(b.date)), [moments]);
 
   if (!mode) return <div className="splash" aria-hidden />;
+
+  if (sorted.length === 0) {
+    return (
+      <main className="empty">
+        <div className="empty-card">
+          <div className="gate-name">Ainda sem fotos</div>
+          {error ? (
+            <p>Não consegui ler a pasta do Google Drive. Confira se a pasta foi compartilhada com a conta de serviço. Detalhe: {error}</p>
+          ) : (
+            <p>A pasta do Google Drive está vazia. Coloque as primeiras fotos e vídeos nela e, em até 15 minutos, eles aparecem aqui.</p>
+          )}
+        </div>
+      </main>
+    );
+  }
 
   return (
     <LayoutGroup>
@@ -39,6 +60,7 @@ export function Experience({ moments }: { moments: Moment[] }) {
         <Album moments={sorted} onOpen={setOpenId} />
       )}
       <Lightbox moments={sorted} openId={openId} onChange={setOpenId} />
+      {source === "exemplo" && <div className="sample-badge">fotos de exemplo</div>}
     </LayoutGroup>
   );
 }
