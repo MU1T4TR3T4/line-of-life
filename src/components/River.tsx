@@ -190,13 +190,13 @@ export function River({ moments, onOpen, paused }: Props) {
   const clampX = useCallback((v: number, w = geo.current.W) => clamp(-(w - geo.current.vw), v, 0), []);
 
   const skyMap = useMemo(() => {
-    const world = [0, Xb - 240, Xb - 40, Xb + 220, Xb + 720, W];
-    const colors = ["#0A0F1D", "#121B38", "#4B3F72", "#F0B795", "#E8EFFA", "#F3F6FC"];
+    const world = [0, Xb - 240, Xb - 40, Xb + 60, Xb + 260, Xb + 720, W];
+    const colors = ["#0A0F1D", "#121B38", "#4A3F86", "#F2A98B", "#FBE2CB", "#E8EFFA", "#F3F6FC"];
     const toX = (wx: number) => vp.w / 2 - wx;
     return {
       sky: transform(world.map(toX).reverse(), [...colors].reverse()),
-      ink: transform([toX(Xb + 200), toX(Xb - 60)], ["#1A2238", "#EEF2FB"]),
-      soft: transform([toX(Xb + 200), toX(Xb - 60)], ["rgba(26,34,56,.62)", "rgba(238,242,251,.62)"]),
+      ink: transform([toX(Xb + 50), toX(Xb - 50)], ["#1A2238", "#EEF2FB"]),
+      soft: transform([toX(Xb + 50), toX(Xb - 50)], ["rgba(26,34,56,.62)", "rgba(238,242,251,.62)"]),
     };
   }, [Xb, W, vp.w]);
 
